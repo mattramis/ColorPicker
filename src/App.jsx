@@ -1,22 +1,42 @@
 // Write your Color component here
 import React, { useState } from "react";
+import "./index.css";
 
-const Color = ({ color, setSelectedColor }) => {
-  return <div className={color} onClick={() => setSelectedColor(color)}></div>;
+const Color = ({ color, setSelectedColor, isSelected }) => {
+  return (
+    <div
+      className={`color ${color} ${isSelected ? "selected" : ""}`}
+      onClick={() => setSelectedColor(color)}
+    ></div>
+  );
 };
 
 const Picker = () => {
   const [selectedColor, setSelectedColor] = useState("");
 
   return (
-    <div id="navbar">
-      <div>Currently selected: </div>
-      <div className={selectedColor}>{selectedColor}</div>
+    <div id="container">
+      <div id="navbar">
+        <div>Currently selected: </div>
+        <div className={`color ${selectedColor}`}>{selectedColor}</div>
+      </div>
 
       <div id="colors-list">
-        <Color color="red" setSelectedColor={setSelectedColor} />
-        <Color color="blue" setSelectedColor={setSelectedColor} />
-        <Color color="green" setSelectedColor={setSelectedColor} />
+        <Color
+          color="red"
+          setSelectedColor={setSelectedColor}
+          isSelected={selectedColor === "red"}
+        />
+        <Color
+          color="blue"
+          setSelectedColor={setSelectedColor}
+          isSelected={selectedColor === "blue"}
+        />
+        <Color
+          color="green"
+          setSelectedColor={setSelectedColor}
+          isSelected={selectedColor === "green"}
+        />
       </div>
     </div>
   );
